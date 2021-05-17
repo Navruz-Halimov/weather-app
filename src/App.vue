@@ -90,8 +90,8 @@
         </div>
       </div>
     </div>
-    <!-- <pre>{{weather}}</pre> -->
-    <!-- <Snowf
+  <Snowf
+  v-if="loading"
   :amount="50"
   :size="5"
   :speed="1.5"
@@ -102,40 +102,17 @@
   :zIndex="null"
   :resize="true"
   color="#fff"
-/> -->
-    <!-- <main>
-    
-
-      <div class="weather-wrap" v-if="(typeof weather.main != 'undefined') && loading">
-        <div class="location-box">
-          <div class="location">
-            {{ weather.name }}, {{ weather.sys.country }}
-          </div>
-          <div class="date">{{ dateBuilder() }}</div>
-        </div>
-
-        <div class="weather-box">
-          <div class="temp">{{ Math.round(weather.main.temp) }}°c</div>
-          <div class="weather">{{ weather.weather[0].main }}</div>
-          <div class="icon">
-            <img :src="iconurl" alt="" />
-          </div>
-        </div>
-      </div>
-        <div v-else>
-    <loader />
-  </div>
-    </main> -->
+/>
   </div>
 </template>
 <script>
-// import Snowf from 'vue-snowf';
+import Snowf from 'vue-snowf';
 import loader from "./components/loader";
 import axios from "axios";
 export default {
   components: {
     loader,
-    // Snowf
+    Snowf
   },
   name: "app",
   data() {
@@ -153,12 +130,8 @@ export default {
   },
   created() {
     this.getLocation();
-    this.day();
   },
   methods: {
-    day(){
-return console.log('type of days',typeof this.days)
-    },
     getLocation() {
       if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(this.showPosition);
